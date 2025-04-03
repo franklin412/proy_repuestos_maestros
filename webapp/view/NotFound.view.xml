@@ -1,0 +1,18 @@
+<mvc:View
+	controllerName="zproject.maestrorep.controller.Detail"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Page
+		id="page">
+		<customHeader>
+		</customHeader>
+		<content>
+			<MessagePage
+				showHeader="false"
+				text="{i18n>tNotFound}"
+				description=""/>
+		</content>
+	</Page>
+</mvc:View>
+

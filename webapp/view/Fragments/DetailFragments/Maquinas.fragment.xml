@@ -1,0 +1,63 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<Table 
+        visible="{localModel>/visDetalle/Maquinas}"
+      inset="false"
+      items="{
+         path: 'localModel>/aTableMainMaq'
+      }">
+      <headerToolbar>
+         <OverflowToolbar>
+            <content>
+               <Title text="Items" level="H2"/>
+               <ToolbarSpacer />
+               <Button
+                  icon="sap-icon://add"
+                  press="onAgregarNuevoRegistro" />
+            </content>
+         </OverflowToolbar>
+      </headerToolbar>
+      <columns>
+         <Column width="12em">
+            <Text text="Marca" />
+         </Column>
+         <Column minScreenWidth="Tablet" demandPopin="true">
+            <Text text="Modelo" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Año de Fabricación" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Color" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Número de serie" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Tipo de Motor" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Capacidad de Tanque" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Acciones" />
+         </Column>
+      </columns>
+      <items>
+         <ColumnListItem vAlign="Middle">
+            <cells>
+               <Text text="{localModel>marca}" />
+               <Text text="{localModel>modelo}" />
+               <Text text="{localModel>anioFabricacion}" />
+               <Text text="{localModel>color}" />
+               <Text text="{localModel>numeroSerie}" />
+               <Text text="{localModel>tipoMotor}" />
+               <Text text="{localModel>capacidadTanque}" />
+               <HBox >
+                  <Button icon="sap-icon://picture" press="onOpenAdjuntos" />
+                  <Button icon="sap-icon://delete" press="onDelete" />
+               </HBox>
+            </cells>
+         </ColumnListItem>
+      </items>
+   </Table>
+</core:FragmentDefinition>

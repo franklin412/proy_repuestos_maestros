@@ -1,0 +1,8 @@
+<mvc:View
+	controllerName="zproject.maestrorep.controller.App"
+	displayBlock="true"
+	height="100%"
+	xmlns="sap.f"
+	xmlns:mvc="sap.ui.core.mvc">
+    <FlexibleColumnLayout id="fcl" stateChange="onStateChanged"	layout="{localModel>/layout}" backgroundDesign="Translucent"/>
+</mvc:View>

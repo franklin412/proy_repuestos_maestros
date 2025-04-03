@@ -1,0 +1,125 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:u="sap.ui.unified" 
+  xmlns:layout="sap.ui.layout"
+  xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog class="Dialog" title="Agregar Fluidos" 
+		contentWidth= "600px"
+		contentHeight= "500px"
+		resizable="true"
+		afterClose="onCloseAdjuntos">
+		<content>
+		<layout:VerticalLayout width="100%">
+        <form:Form width="100%" editable="true">
+          <form:formContainers>
+            <form:FormContainer>
+              <form:formElements>
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>fluNombre}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewFluidos/fluNombre}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>fluTipo}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewFluidos/fluTipo}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>fluCodFluido}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewFluidos/fluCodFluido}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>fluGraVisco}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewFluidos/fluGraVisco}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>fluMarca}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewFluidos/fluMarca}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>fluCompa}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewFluidos/fluCompa}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>fluUM}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewFluidos/fluUM}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>fluFecExpira}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <DatePicker
+                      value="{
+                        'path':'localModel>/oNewFluidos/fluFecExpira'
+                      }"
+                      displayFormat="yyyy-MM-dd"
+                      valueFormat="yyyy-MM-dd"
+                      class="sapUiSmallMarginBottom"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>fluProveedor}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <ComboBox
+                      required="true"
+                      items="{
+                        path: 'localModel>/aProveedores'
+                      }"
+                      selectedKey="{localModel>/oNewFluidos/fluProveedor}">
+                      <core:Item key="{localModel>ID}" text="{localModel>nombre}" />
+                    </ComboBox>
+                  </form:fields>
+                </form:FormElement>
+
+              </form:formElements>
+              <form:title/>
+            </form:FormContainer>
+          </form:formContainers>
+          <form:layout>
+            <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="1" labelSpanL="4" columnsM="1" labelSpanM="4" labelSpanS="12"/>
+          </form:layout>
+        </form:Form>
+			</layout:VerticalLayout>
+		</content>
+		<buttons>
+			<Button type="Accept" text="{i18n>Aceptar}" press="onGuardarFluidos"/>
+			<Button type="Reject" text="{i18n>Cancelar}" press="onCloseAdjuntos"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

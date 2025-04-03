@@ -1,0 +1,108 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:u="sap.ui.unified" 
+  xmlns:layout="sap.ui.layout"
+  xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog class="Dialog" title="Agregar Materiales" 
+		contentWidth= "250px"
+		contentHeight= "{=${localModel>/Aprobador1} ? 300px : 320px}"
+		resizable="true"
+		afterClose="onCloseMateriales">
+		<content>
+		<layout:VerticalLayout width="100%">
+        <form:Form width="100%" editable="true">
+          <form:formContainers>
+            <form:FormContainer>
+              <form:formElements>
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>matNombre}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewMateriales/matNombre}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>matTipo}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewMateriales/matTipo}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>matCodMate}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewMateriales/matCodMate}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>matMarca}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewMateriales/matMarca}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>matGranulometria}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewMateriales/matGranulometria}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>matCompatibilidad}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewMateriales/matCompatibilidad}"/>
+                  </form:fields>
+                </form:FormElement>
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>matUnidadMedida}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewMateriales/matUnidadMedida}"/>
+                  </form:fields>
+                </form:FormElement>
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>matProveedores}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <!-- <Input value="{localModel>/oNewMateriales/matProveedores}"/> -->
+                    <ComboBox
+                      required="true"
+                      items="{
+                        path: 'localModel>/aProveedores'
+                      }"
+                      selectedKey="{localModel>/oNewMateriales/matProveedores}">
+                      <core:Item key="{localModel>ID}" text="{localModel>nombre}" />
+                    </ComboBox>
+                  </form:fields>
+                </form:FormElement>
+              </form:formElements>
+              <form:title/>
+            </form:FormContainer>
+          </form:formContainers>
+          <form:layout>
+            <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="1" labelSpanL="4" columnsM="1" labelSpanM="4" labelSpanS="12"/>
+          </form:layout>
+        </form:Form>
+			</layout:VerticalLayout>
+		</content>
+		<buttons>
+			<Button type="Accept" text="{i18n>Aceptar}" press="onGuardarMateriales"/>
+			<Button type="Reject" text="{i18n>Cancelar}" press="onCloseMateriales"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

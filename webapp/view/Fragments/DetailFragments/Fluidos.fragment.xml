@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<Table 
+        visible="{localModel>/visDetalle/Fluidos}"
+      inset="false"
+      items="{
+         path: 'localModel>/aTableMainFlu'
+      }">
+      <headerToolbar>
+         <OverflowToolbar>
+            <content>
+               <Title text="Items" level="H2"/>
+               <ToolbarSpacer />
+               <Button
+                  icon="sap-icon://add"
+                  press="onAgregarNuevoRegistro" />
+            </content>
+         </OverflowToolbar>
+      </headerToolbar>
+      <columns>
+         <Column width="12em">
+            <Text text="Nombre" />
+         </Column>
+         <Column minScreenWidth="Tablet" demandPopin="true">
+            <Text text="Tipo" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Código de Fluído" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Grado de viscosidad" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Marca" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Compatibilidad" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Unidad de Medida" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Fecha de Expiración" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Proveedor" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Acciones" />
+         </Column>
+      </columns>
+      <items>
+         <ColumnListItem vAlign="Middle">
+            <cells>
+               <Text text="{localModel>nombre}" />
+               <Text text="{localModel>tipo}" />
+               <Text text="{localModel>codigo_fluido}" />
+               <Text text="{localModel>viscosidad_grado}" />
+               <Text text="{localModel>marca}" />
+               <Text text="{localModel>compatibilidad}" />
+               <Text text="{localModel>unidad_medida}" />
+               <Text text="{localModel>fecha_expiracion}" />
+               <Text text="{localModel>proveedoresId/nombre}" />
+               <Button icon="sap-icon://delete" press="onDelete" />
+            </cells>
+         </ColumnListItem>
+      </items>
+   </Table>
+</core:FragmentDefinition>

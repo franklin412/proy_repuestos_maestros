@@ -1,0 +1,75 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:u="sap.ui.unified" 
+  xmlns:layout="sap.ui.layout"
+  xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog class="Dialog" title="Agregar Proveedores" 
+		contentWidth= "250px"
+		contentHeight= "{=${localModel>/Aprobador1} ? 300px : 320px}"
+		resizable="true"
+		afterClose="onCloseProveedores">
+		<content>
+		<layout:VerticalLayout width="100%">
+        <form:Form width="100%" editable="true">
+          <form:formContainers>
+            <form:FormContainer>
+              <form:formElements>
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>tNombre}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewProveedor/tNombre}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>tContacto}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewProveedor/tContacto}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>tTelefono}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewProveedor/tTelefono}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>temail}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewProveedor/tEmail}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>tdireccion}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewProveedor/tDireccion}"/>
+                  </form:fields>
+                </form:FormElement>
+              </form:formElements>
+              <form:title/>
+            </form:FormContainer>
+          </form:formContainers>
+          <form:layout>
+            <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="1" labelSpanL="4" columnsM="1" labelSpanM="4" labelSpanS="12"/>
+          </form:layout>
+        </form:Form>
+			</layout:VerticalLayout>
+		</content>
+		<buttons>
+			<Button type="Accept" text="{i18n>Aceptar}" press="onGuardarProveedor"/>
+			<Button type="Reject" text="{i18n>Cancelar}" press="onCloseProveedores"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

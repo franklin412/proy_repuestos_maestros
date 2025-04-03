@@ -1,0 +1,32 @@
+{
+	"arrcanvas": {},
+	"aEntidades":[{
+		"tEntidad": "Proveedores",
+		"Code": "Prov"
+	},{
+		"tEntidad": "Maquinas",
+		"Code": "Maq"
+	},{
+		"tEntidad": "Materiales",
+		"Code": "Mate"
+	},{
+		"tEntidad": "Repuestos",
+		"Code": "Rep"
+	},{
+		"tEntidad": "Fluidos",
+		"Code": "Flu"
+	}],
+	"aProveedores":[],
+	"oNewProveedor": {},
+	"oNewMaquinas": {},
+	"oNewMateriales": {},
+	"oNewRepuestos": {},
+	"oNewFluidos": {},
+	"visDetalle": {
+		"Proveedores": true,
+		"Maquinas": false,
+		"Materiales": false,
+		"Repuestos": false,
+		"Fluidos": false
+	}
+}

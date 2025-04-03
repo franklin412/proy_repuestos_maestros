@@ -1,0 +1,60 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:fb="sap.ui.comp.filterbar">
+	<Table 
+        visible="{localModel>/visDetalle/Repuestos}"
+      inset="false"
+      items="{
+         path: 'localModel>/aTableMainRep'
+      }">
+      <headerToolbar>
+         <OverflowToolbar>
+            <content>
+               <Title text="Items" level="H2"/>
+               <ToolbarSpacer />
+               <Button
+                  icon="sap-icon://add"
+                  press="onAgregarNuevoRegistro" />
+            </content>
+         </OverflowToolbar>
+      </headerToolbar>
+      <columns>
+         <Column width="12em">
+            <Text text="Nombre" />
+         </Column>
+         <Column minScreenWidth="Tablet" demandPopin="true">
+            <Text text="Categoría" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Código de Repuesto" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Marca" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Número de parte" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Unidad de Medida" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Proveedor" />
+         </Column>
+         <Column hAlign="End">
+            <Text text="Acciones" />
+         </Column>
+      </columns>
+      <items>
+         <ColumnListItem vAlign="Middle">
+            <cells>
+               <Text text="{localModel>nombre}" />
+               <Text text="{localModel>categoria}" />
+               <Text text="{localModel>codigo_repuesto}" />
+               <Text text="{localModel>marca}" />
+               <Text text="{localModel>numero_parte}" />
+               <Text text="{localModel>unidad_medida}" />
+               <Text text="{localModel>proveedoresId/nombre}" />
+               <Button icon="sap-icon://delete" press="onDeleteRepuesto" />
+            </cells>
+         </ColumnListItem>
+      </items>
+   </Table>
+</core:FragmentDefinition>

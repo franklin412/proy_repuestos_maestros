@@ -1,0 +1,98 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:u="sap.ui.unified" 
+  xmlns:layout="sap.ui.layout"
+  xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog class="Dialog" title="Agregar Maquinas" 
+		contentWidth= "250px"
+		contentHeight= "{=${localModel>/Aprobador1} ? 300px : 320px}"
+		resizable="true"
+		afterClose="onCloseMaquinas">
+		<content>
+		<layout:VerticalLayout width="100%">
+        <form:Form width="100%" editable="true">
+          <form:formContainers>
+            <form:FormContainer>
+              <form:formElements>
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>maqMarca}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewMaquinas/tMarca}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>maqModelo}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewMaquinas/tModelo}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>maqAnioFabricacion}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <!-- <Input value="{localModel>/oNewMaquinas/tAnioFab}"/> -->
+                    <DatePicker
+                      value="{
+                        'path':'localModel>/oNewMaquinas/tAnioFab'
+                      }"
+                      displayFormat="yyyy"
+                      valueFormat="yyyy"
+                      class="sapUiSmallMarginBottom"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>maqColor}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewMaquinas/tColor}"/>
+                  </form:fields>
+                </form:FormElement>
+
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>maqNumeroSerie}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewMaquinas/tNumSerie}"/>
+                  </form:fields>
+                </form:FormElement>
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>maqTipoMotor}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewMaquinas/tTipMotor}"/>
+                  </form:fields>
+                </form:FormElement>
+                <form:FormElement visible="true">
+                  <form:label>
+                    <Label text="{i18n>maqCapacidadTanque}" design="Bold" width="100%" />
+                  </form:label>
+                  <form:fields>
+                    <Input value="{localModel>/oNewMaquinas/tCapTanque}"/>
+                  </form:fields>
+                </form:FormElement>
+              </form:formElements>
+              <form:title/>
+            </form:FormContainer>
+          </form:formContainers>
+          <form:layout>
+            <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="1" labelSpanL="4" columnsM="1" labelSpanM="4" labelSpanS="12"/>
+          </form:layout>
+        </form:Form>
+			</layout:VerticalLayout>
+		</content>
+		<buttons>
+			<Button type="Accept" text="{i18n>Aceptar}" press="onGuardarMaquinas"/>
+			<Button type="Reject" text="{i18n>Cancelar}" press="onCloseMaquinas"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>
