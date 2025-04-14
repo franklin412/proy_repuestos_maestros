@@ -72,7 +72,10 @@ sap.ui.define([
             onCloseFluidos: function (oEvent) {
                 this.onFrgFluidos.close();
             },
-            onOpenAdjuntos: function(){
+            onOpenAdjuntos: function(oEvent){
+                let getSelItem = oEvent.getSource().getBindingContext("localModel").getObject();
+                getSelItem.urlImage = "https://myfirstbucket-frank.s3.us-east-1.amazonaws.com/"+getSelItem.ID;
+                this.localModel.setProperty("/oAdjSel",getSelItem);
                 this.onFrgAdjuntos.open();
             },
             onCloseAdjuntos: function(){
@@ -147,7 +150,9 @@ sap.ui.define([
                         "marca": getNewRep.repMarcao,
                         "numero_parte": getNewRep.repNumParte,
                         "unidad_medida": getNewRep.repUM,
-                        "proveedoresId": getNewMate.repProveedores
+                        "proveedoresId": {
+                            "ID": getNewMate.matProveedores
+                        }
                     };
                     let getRespuestaCreate = await service.onPostPutGeneral(this.repuestosmodel, "/Repuestos", oProveedores, "POST");
                     debugger;
@@ -167,7 +172,9 @@ sap.ui.define([
                         "compatibilidad": getNewFlu.fluCompa,
                         "unidad_medida": getNewFlu.fluUM,
                         "fecha_expiracion": getNewFlu.fluFecExpira,
-                        "proveedores_ID": getNewFlu.fluProveedor
+                        "proveedoresId": {
+                            "ID": getNewMate.matProveedores
+                        }
                     };
                     let getRespuestaCreate = await service.onPostPutGeneral(this.repuestosmodel, "/Fluidos", oProveedores, "POST");
                     debugger;
@@ -180,6 +187,35 @@ sap.ui.define([
                 let getLineaSel = oEvent.getSource().getBindingContext("localModel").getObject();
 
                 let oDeleteData = await service.onPostPutGeneral(this.repuestosmodel, "/"+getDataEnt, getLineaSel , "DELETE");
+            },
+            onGuardarImagen: async function(){
+                var oThat = this;
+                let getFileUploader = this.localModel.getProperty("/fFileUpload");
+                let getObjSel = this.localModel.getProperty("/oAdjSel");
+                let getBaseUri = "";
+                !local ? getBaseUri = sap.ui.component(sap.ui.core.Component.getOwnerIdFor(this.getView()))._oManifest._oBaseUri._parts.path : null;
+                try{
+                    if(getFileUploader){
+                        let fileName = {
+                            "fileName": getObjSel.ID
+                        };
+                        let getFileCallSigned = await service.onGetCallsignedUrl(fileName);
+                        getFileCallSigned = getFileUploader.name +"?"+ getFileCallSigned.split("?")[1];
+                        await service.onPostAWSFile(getBaseUri,getFileCallSigned,getFileUploader);
+                        MessageBox.success("Se guardo la imagen correctamente.");
+                        oThat.onCloseAdjuntos();
+                        debugger;
+                    }
+
+                }catch(e){
+                    MessageBox.error("Error al guardar imagen.");
+                }
+            },
+            onFinishUpload: function(oEvent){
+                if(oEvent.mParameters.files.length !== 0){
+                    let getFileU = oEvent.mParameters.files[0];
+                    this.localModel.setProperty("/fFileUpload", getFileU);
+                }
             }
 
 

@@ -1,10 +1,12 @@
 sap.ui.define([
 	"./BaseController",
 	"sap/ui/core/mvc/Controller",
+	'sap/ui/core/BusyIndicator',
 	"../service/ServiceHDB",
-	"../lib/underscore3"
+	"../lib/underscore3",
+	"sap/m/MessageBox"
 ],
-	function (BaseController, Controller, service, underscore3) {
+	function (BaseController, Controller, BusyIndicator, service, underscore3,MessageBox) {
 		"use strict";
 		var canvas;
 		var oThat;
@@ -33,25 +35,31 @@ sap.ui.define([
 			onNavigateDetail: async function (oEvent) {
 				let getObj = oEvent.getSource().getBindingContext("localModel").getObject();
 				let tipoTablaDetalle;
+				BusyIndicator.show(0);
 				this.localModel.setProperty("/oDataSelected", getObj);
 				this.onModifVisibleDetail(getObj);
-				await this.getProveedores();
-				let setEntityExpand = getObj.tEntidad === "Materiales" || getObj.tEntidad === "Repuestos" || getObj.tEntidad === "Fluidos" ? "proveedoresId" : "";
-				let aTablaMain = await service.onConsultaDatosBD(this.repuestosmodel, "/" + getObj.tEntidad, setEntityExpand );
-				
-				getObj.tEntidad === "Proveedores" ? tipoTablaDetalle = "aTableMainProv" : null;
-				getObj.tEntidad === "Maquinas" ? tipoTablaDetalle = "aTableMainMaq" : null;
-				getObj.tEntidad === "Materiales" ? tipoTablaDetalle = "aTableMainMate" : null;
-				getObj.tEntidad === "Repuestos" ? tipoTablaDetalle = "aTableMainRep" : null;
-				getObj.tEntidad === "Fluidos" ? tipoTablaDetalle = "aTableMainFlu" : null;
-
-				this.localModel.setProperty("/" + tipoTablaDetalle, aTablaMain.results);
-				this.oRouter.navTo("detail", { layout: "TwoColumnsMidExpanded" });
+				try{
+					await this.getProveedores();
+					let setEntityExpand = getObj.tEntidad === "Materiales" || getObj.tEntidad === "Repuestos" || getObj.tEntidad === "Fluidos" ? "proveedoresId" : "";
+					let aTablaMain = await service.onConsultaDatosBD(this.repuestosmodel, "/" + getObj.tEntidad, setEntityExpand );
+					
+					getObj.tEntidad === "Proveedores" ? tipoTablaDetalle = "aTableMainProv" : null;
+					getObj.tEntidad === "Maquinas" ? tipoTablaDetalle = "aTableMainMaq" : null;
+					getObj.tEntidad === "Materiales" ? tipoTablaDetalle = "aTableMainMate" : null;
+					getObj.tEntidad === "Repuestos" ? tipoTablaDetalle = "aTableMainRep" : null;
+					getObj.tEntidad === "Fluidos" ? tipoTablaDetalle = "aTableMainFlu" : null;
+	
+					this.localModel.setProperty("/" + tipoTablaDetalle, aTablaMain.results);
+					this.oRouter.navTo("detail", { layout: "TwoColumnsMidExpanded" });
+					BusyIndicator.hide();
+				}catch(e){
+					MessageBox.warning("Error al ver el detalle.");
+					BusyIndicator.hide();
+				}
 			},
 			getProveedores: async function () {
 				let aProveedores = await service.onConsultaDatosBD(this.repuestosmodel, "/Proveedores");
 				this.localModel.setProperty("/aProveedores", aProveedores.results.length > 0 ? aProveedores.results : []);
-				debugger;
 			},
 			onModifVisibleDetail: function (getObj) {
 				let refreshVisDet = {

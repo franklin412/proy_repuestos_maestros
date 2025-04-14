@@ -32,9 +32,9 @@
          <Column hAlign="End">
             <Text text="Dirección" />
          </Column>
-         <Column hAlign="End">
+         <!-- <Column hAlign="End">
             <Text text="Acciones" />
-         </Column>
+         </Column> -->
       </columns>
       <items>
          <ColumnListItem vAlign="Middle">
@@ -44,7 +44,7 @@
                <Text text="{localModel>telefono}" />
                <Text text="{localModel>email}" />
                <Text text="{localModel>direccion}" />
-               <Button icon="sap-icon://delete" press="onDeleteRepuesto" enabled="false" />
+               <!-- <Button icon="sap-icon://delete" press="onDeleteRepuesto" enabled="false" /> -->
             </cells>
          </ColumnListItem>
       </items>
